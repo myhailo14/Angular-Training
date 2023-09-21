@@ -440,3 +440,7 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+products-training/.editorconfig
+products-training/.vscode/extensions.json
+products-training/.vscode/launch.json
+products-training/.vscode/tasks.json
