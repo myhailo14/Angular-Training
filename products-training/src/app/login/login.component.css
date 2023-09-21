@@ -1,0 +1,11 @@
+.form-container {
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  align-items: center; /* Vertical centering */
+  height: 100vh; /* Full viewport height */
+  width: 100%; /* Full viewport width */
+}
+
+form, mat-form-field {
+  width: 100%;
+}
