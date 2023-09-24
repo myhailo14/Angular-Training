@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { ContentObserver } from '@angular/cdk/observers';
 import { SessionStorageService } from './session-storage.service';
+import { Credentials } from '../models/credentials.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,18 +15,19 @@ export class AuthService {
     private storage: SessionStorageService
   ) {}
 
-  login(credentials: any): Observable<boolean> {
-    return this.http.post(this.API_URL + '/User', credentials).pipe(
-      map((response: any) => {
-        this.storage.setIsLogged(response);
-        return response;
-      }),
-      catchError((error: any) => {
-        console.log(error);
-        this.storage.setIsLogged(false);
-        return of(false);
-      })
-    );
+  login(credentials: Credentials): Observable<boolean> {
+    return this.http
+      .post<boolean>(this.API_URL + '/User', credentials)
+      .pipe(
+        map((response: boolean) => {
+          this.storage.setIsLogged(response);
+          return response;
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.storage.setIsLogged(false);
+          return of(false);
+        })
+      );
   }
 
   logout(): void {

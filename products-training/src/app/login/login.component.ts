@@ -1,13 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
   FormControl,
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../services/authentication.service';
-import { Router } from '@angular/router';
+import { Credentials } from '../models/credentials.model';
 
 @Component({
   selector: 'app-login',
@@ -17,17 +17,13 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   hide: boolean = true;
   loginForm: FormGroup;
-  email: AbstractControl;
-  password: AbstractControl;
+  email: FormControl;
+  password: FormControl;
 
   auth: AuthService;
   wasFirstSubmit: boolean = false;
 
-  constructor(
-    fb: FormBuilder,
-    auth: AuthService,
-    private router: Router
-  ) {
+  constructor(fb: FormBuilder, auth: AuthService, private router: Router) {
     this.loginForm = fb.group({
       email: [
         '',
@@ -38,32 +34,31 @@ export class LoginComponent implements OnInit {
         Validators.compose([Validators.required, this.passwordValidator])
       ],
     });
-    this.email = this.loginForm.controls['email'];
-    this.password = this.loginForm.controls['password'];
+    this.email = this.loginForm.controls['email'] as FormControl;
+    this.password = this.loginForm.controls['password'] as FormControl;
 
     this.auth = auth;
   }
 
   ngOnInit(): void {}
 
-  onSubmit(value: any): void {
+  onSubmit(credentials: Credentials): void {
     this.wasFirstSubmit = true;
 
     if (!this.loginForm.valid) {
       this.loginForm.markAllAsTouched();
       return;
     }
-    this.auth.login(value).subscribe(response => {
-      if(response){
+    this.auth.login(credentials).subscribe((response) => {
+      if (response) {
         this.router.navigate(['/home']);
       }
-      this.loginForm.setErrors({wrongCredentials: true})
+      this.loginForm.setErrors({ wrongCredentials: true });
     });
-    
   }
 
   isDisabledSubmit(): boolean {
-    if(this.wasFirstSubmit){
+    if (this.wasFirstSubmit) {
       return this.loginForm.invalid;
     } else {
       return this.loginForm.invalid 

@@ -7,8 +7,10 @@ import { SessionStorageService } from './services/session-storage.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'products-training';
+  title = 'library';
 
   constructor(){
+    // remove later
+    // sessionStorage.setItem('IsLogged', JSON.stringify(true));
   }
 }

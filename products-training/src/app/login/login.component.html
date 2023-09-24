@@ -8,13 +8,13 @@
 
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input matInput placeholder="pat@example.com" name="email" [formControl]="$any(email)" required>
+          <input matInput placeholder="pat@example.com" name="email" [formControl]="email" required>
           <mat-error *ngIf="email.invalid">{{getEmailError()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Password</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" name="password" [formControl]="$any(password)" required>
+          <input matInput [type]="hide ? 'password' : 'text'" name="password" [formControl]="password" required>
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
