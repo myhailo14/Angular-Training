@@ -1,0 +1,25 @@
+.fixed-size-img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
+.fixed-size-card {
+  width: 300px;
+  height: 100%;
+}
+
+/* Sold state */
+.sold-card {
+  background-color: accent; /* Accent background color for sold */
+}
+
+/* Rented state */
+.rented-card {
+  background-color: #525252; /* Secondary background color for rented */
+}
+
+/* Dimmed image for sold and rented states */
+.dimmed-img {
+  opacity: 0.5; /* Dim the image to 50% */
+}

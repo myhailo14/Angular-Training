@@ -1,3 +1,26 @@
 .toolbar-spacer {
   flex: 1 1 auto;
 }
+
+.full-screen-container {
+  height: 100vh; /* Make it full-screen height */
+  display: flex;
+  flex-direction: column; /* Arrange children vertically */
+  overflow: hidden; /* Hide overflow */
+}
+
+.drawer-container {
+  flex: 1; /* Allow the content to expand and fill the remaining space */
+  display: flex;
+  overflow: hidden;
+}
+
+.content {
+  flex: 1; /* Allow it to expand and fill the remaining space */
+  padding: 16px; /* Add padding as needed */
+  overflow-y: auto; /* Add vertical scroll if content overflows */
+}
+
+.home-link {
+  cursor: pointer;
+}

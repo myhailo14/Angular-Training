@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { loggedInGuard } from './guards/logged-in.guard';
 import { LoginComponent } from './login/login.component';
+import { routes as childRoutes, BookRoutingModule } from './book/book-routing.module';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
-  { path: 'home', component: HomePageComponent, canActivate: [loggedInGuard] },
+  { path: 'home', component: HomePageComponent, canActivate: [loggedInGuard], children: childRoutes },
   { path: 'login', component: LoginComponent }
 ];
 

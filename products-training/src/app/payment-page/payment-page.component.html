@@ -1,0 +1,25 @@
+<div *ngIf="chosenBook" class="form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{prettifyString(operation)}}</mat-card-title>
+      <mat-card-subtitle *ngIf="operation === 'rent'">For {{getRentTerm()}} days</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <app-book-card [book]="chosenBook"></app-book-card>
+      <h2>Total: {{chosenBookPrice}} UAH</h2>
+      <form [formGroup]="paymentForm" (ngSubmit)="onPayClick(paymentForm.value)">
+        <mat-form-field class="wide-field">
+          <mat-label>Amount</mat-label>
+          <input matInput type="number" class="example-right-align" placeholder="" [formControl]="sum" required>
+          <mat-error *ngIf="sum.invalid">{{getSumError()}}</mat-error>
+        </mat-form-field>
+
+        <div>
+          <button mat-raised-button color="primary" type="submit"
+            [disabled]="paymentForm.invalid && wasSubmit">Pay</button>
+          <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

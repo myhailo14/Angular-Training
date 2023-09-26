@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     }
     this.auth.login(credentials).subscribe((response) => {
       if (response) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home/books']);
       }
       this.loginForm.setErrors({ wrongCredentials: true });
     });

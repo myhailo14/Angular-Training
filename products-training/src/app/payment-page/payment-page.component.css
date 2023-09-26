@@ -1,0 +1,10 @@
+.form-container {
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  align-items: top; /* Vertical centering */
+  width: 100%; /* Full viewport width */
+}
+
+.wide-field {
+  width: 100%;
+}

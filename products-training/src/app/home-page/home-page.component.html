@@ -1,5 +1,25 @@
-<mat-toolbar>
-  <span>Logged in</span>
-  <span class="toolbar-spacer"></span>
-  <button mat-stroked-button color="primary" (click)="logOut()">Log Out</button>
-</mat-toolbar>
+<div class="full-screen-container">
+  <mat-toolbar color="primary">
+    <span [routerLink]="['books']" class="home-link">E-Library</span>
+    <span class="toolbar-spacer"></span>
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Rented books</button>
+      <button mat-menu-item>Bought books</button>
+      <button mat-menu-item (click)="logOut()">Log Out</button>
+    </mat-menu>
+  </mat-toolbar>
+
+  <mat-drawer-container class="drawer-container">
+    <mat-drawer mode="side" opened>
+      <mat-list role="list">
+        <mat-list-item role="listitem">Detective</mat-list-item>
+        <mat-list-item role="listitem">Fantasy</mat-list-item>
+        <mat-list-item role="listitem">History</mat-list-item>
+      </mat-list>
+    </mat-drawer>
+    <mat-drawer-content class="content">
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

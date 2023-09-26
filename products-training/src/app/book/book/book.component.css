@@ -1,0 +1,28 @@
+.card-container {
+  flex: 1; /* Allow it to expand and fill the remaining space */
+  padding: 16px; /* Add padding as needed */
+  overflow-y: auto; /* Add vertical scroll if content overflows */
+}
+
+.column-container {
+  display: flex; /* Use flexbox for layout */
+}
+
+/* Define the left column with 60% width */
+.left-column {
+  flex: 0 0 60%; /* 60% width, no shrinking or growing */
+  padding: 10px; /* Add padding as needed */
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: left; /* Center items horizontally */
+  width: 90%;
+}
+
+.right-column > button {
+  margin-bottom: 1vh;
+  height: 6vh;
+  width: 90%;
+}

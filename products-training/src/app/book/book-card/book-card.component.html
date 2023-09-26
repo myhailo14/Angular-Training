@@ -1,0 +1,14 @@
+<div *ngIf="book">
+  <mat-card class="fixed-size-card" [ngStyle]="{'background-color': book.state === 'Sold' ? '#FFB6C1' : (book.state === 'Rented' ? '#D3D3D3' : '')}">
+    <mat-card-content>
+      <img src="{{ book.imageUrl }}" class="fixed-size-img"
+        [ngClass]="{'dimmed-img': book.state === 'Sold' || book.state === 'Rented'}">
+    </mat-card-content>
+    <mat-card-header>
+      <mat-card-title>
+        <a [routerLink]="['./', book.id]">{{ book.name }}</a>
+      </mat-card-title>
+      <mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+</div>
