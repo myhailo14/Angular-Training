@@ -12,7 +12,6 @@ export class AppComponent {
   isLoggedIn: boolean;
   
   constructor(private authService: AuthService) {
-    sessionStorage.setItem('IsLogged', JSON.stringify(true));
     this.isLoggedIn = authService.isLoggedIn();
   }
 }
